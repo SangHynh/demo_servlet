@@ -1,0 +1,29 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: THIS PC
+  Date: 24/10/2024
+  Time: 8:17 CH
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Add Phong Ban</title>
+</head>
+<body>
+
+<form action="../phongban" method="post">
+    Phòng ban: <input type="text" name="tenPhongBan" required/><br/>
+    <input type="submit" value="Insert"/>
+    <input type="reset" value="Clear"/>
+</form>
+
+<%
+    List<Student> students= (List<Student>) session.getAttribute("students");
+    for (Student st: students) {
+        out.println(st);
+    }
+%>
+
+</body>
+</html>

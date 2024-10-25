@@ -24,8 +24,9 @@ tasks.withType(JavaCompile) {
 dependencies {
     compileOnly('jakarta.servlet:jakarta.servlet-api:6.0.0')
 
-    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.3.3'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.3'
     implementation 'org.hibernate.orm:hibernate-core:6.6.0.Final'
+    compileOnly 'org.projectlombok:lombok:1.18.34'
 
     compileOnly 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

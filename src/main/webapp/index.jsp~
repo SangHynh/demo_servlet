@@ -9,6 +9,6 @@
     WELCOME TO THE HELL
 </h1>
 <br/>
-<a href="views/phongban.jsp">Quản lý phòng ban</a>
+<a href="views/phongban.jsp">them phongban</a>
 </body>
 </html>
