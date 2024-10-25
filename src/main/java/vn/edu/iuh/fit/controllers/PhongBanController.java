@@ -56,35 +56,5 @@ public class PhongBanController extends HttpServlet {
         }
     }
 
-//    // Handle update requests
-//    @Override
-//    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        try {
-//            long id = Long.parseLong(req.getParameter("id"));
-//            String newTenPhongBan = req.getParameter("tenPhongBan");
-//
-//            if (newTenPhongBan != null && !newTenPhongBan.isEmpty()) {
-//                model.updatePhongBan(id, newTenPhongBan);
-//                resp.getWriter().write("<script>alert('Cập nhật thành công');</script>");
-//            } else {
-//                resp.getWriter().write("<script>alert('Cập nhật thất bại');</script>");
-//            }
-//            resp.sendRedirect(req.getContextPath() + "/phongban");
-//        } catch (Exception e) {
-//            resp.getWriter().write("Error occurred: " + e.getMessage());
-//        }
-//    }
-//
-//    // Handle delete requests
-//    @Override
-//    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        try {
-//            long id = Long.parseLong(req.getParameter("id"));
-//            model.deletePhongBan(id);
-//            resp.getWriter().write("<script>alert('Xóa thành công');</script>");
-//            resp.sendRedirect(req.getContextPath() + "/phongban");
-//        } catch (Exception e) {
-//            resp.getWriter().write("Error occurred: " + e.getMessage());
-//        }
-//    }
+
 }

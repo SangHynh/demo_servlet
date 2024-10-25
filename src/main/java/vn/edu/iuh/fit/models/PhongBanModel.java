@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import vn.edu.iuh.fit.dtos.PhongBan;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PhongBanModel {
     @PersistenceContext(unitName = "demo")
@@ -19,32 +20,28 @@ public class PhongBanModel {
             phongBan.setTenPhongBan(tenPhongBan);
             entityManager.persist(phongBan);
         } catch (Exception e) {
-            // Xử lý ngoại lệ (ghi log hoặc ném ra motch&)
             throw new RuntimeException("Error while adding phong ban: " + e.getMessage(), e);
         }
     }
 
-    // Lấy danh sách phòng ban
-    public List<PhongBan>  listPhongBan(){
-        TypedQuery <PhongBan> q = entityManager.createQuery("select p from PhongBan p", PhongBan.class);
+    public List<PhongBan> listPhongBan() {
+        TypedQuery<PhongBan> q = entityManager.createQuery("SELECT p FROM PhongBan p", PhongBan.class);
         return q.getResultList();
     }
 
-    // Tìm theo Id
-    public PhongBan listPhongBan(long id) {
-        TypedQuery<PhongBan> q = entityManager.createQuery("select p from PhongBan p where p.maPhongBan=:id", PhongBan.class);
+    public PhongBan findPhongBan(long id) {
+        TypedQuery<PhongBan> q = entityManager.createQuery("SELECT p FROM PhongBan p WHERE p.id = :id", PhongBan.class);
         q.setParameter("id", id);
-        return q.getSingleResult();
+        return q.getResultStream().findFirst().orElse(null); // Trả về null nếu không tìm thấy
     }
 
-    // Update PhongBan by ID
     @Transactional
     public void updatePhongBan(long id, String newTenPhongBan) {
         try {
             PhongBan phongBan = entityManager.find(PhongBan.class, id);
             if (phongBan != null) {
                 phongBan.setTenPhongBan(newTenPhongBan);
-                entityManager.merge(phongBan); // Update the entity
+                entityManager.merge(phongBan);
             } else {
                 throw new RuntimeException("PhongBan not found for ID: " + id);
             }
@@ -53,13 +50,12 @@ public class PhongBanModel {
         }
     }
 
-    // Delete PhongBan by ID
     @Transactional
     public void deletePhongBan(long id) {
         try {
             PhongBan phongBan = entityManager.find(PhongBan.class, id);
             if (phongBan != null) {
-                entityManager.remove(phongBan); // Remove the entity
+                entityManager.remove(phongBan);
             } else {
                 throw new RuntimeException("PhongBan not found for ID: " + id);
             }
